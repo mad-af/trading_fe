@@ -1,0 +1,10 @@
+.top-navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+  padding: 20px;
+}
+.top-navbar > *:hover {
+  cursor: pointer;
+}
