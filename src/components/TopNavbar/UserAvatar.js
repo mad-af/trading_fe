@@ -1,11 +1,11 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 
-const UserAvatar = () => {
+const UserAvatar = ({ onClick, userName }) => {
   return (
-    <div>
-      <Avatar className='top-navbar__notification'>H</Avatar>
-    </div>
+    <Avatar onClick={onClick} className='top-navbar__notification hover'>
+      {userName[0]}
+    </Avatar>
   );
 };
 
