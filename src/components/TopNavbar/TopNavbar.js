@@ -3,28 +3,30 @@ import './top-navbar.css';
 import { Badge } from '@mui/material';
 import UserAvatar from './UserAvatar';
 import { NotificationsRounded } from '@mui/icons-material';
-import UserContext from '../../context/UserContext';
+import { UserContext } from '../../context/Context';
 import UserMenu from './UserMenu';
 import NotificationMenu from './NotificationMenu';
 
 const TopNavbar = () => {
-  const userName = useContext(UserContext);
+  const { name } = useContext(UserContext);
   const [isAvatarMenuOn, setAvatarMenu] = useState('none');
   const [isNotificationMenuOn, setNotificationMenu] = useState('none');
 
-  const onAvatarClick = () => {
+  const onAvatarClick = (e) => {
     isAvatarMenuOn ? setAvatarMenu('') : setAvatarMenu('none');
+    notNotificationClick();
+    e.stopPropagation();
   };
 
-  const onNotificationClick = () => {
+  const onNotificationClick = (e) => {
     isNotificationMenuOn ? setNotificationMenu('') : setNotificationMenu('none');
+    onNotAvatarClick();
+    e.stopPropagation();
   };
 
-  const onNotAvatarClick = (e) => {
-    if (isAvatarMenuOn) return;
-    if (!e.target.matches('.top-navbar__avatar')) {
-      setAvatarMenu('none');
-    }
+  const isAvatarMenuHasNone = () => {
+    const el = document.querySelector('#top-navbar__avatar-menu');
+    return el.classList.contains('none');
   };
 
   const isNotificationMenuHasNone = () => {
@@ -32,23 +34,22 @@ const TopNavbar = () => {
     return el.classList.contains('none');
   };
 
+  const onNotAvatarClick = (e) => {
+    if (isAvatarMenuHasNone()) return;
+    setAvatarMenu('none');
+  };
+
   const notNotificationClick = (e) => {
     if (isNotificationMenuHasNone()) {
       return;
     }
-    if (!e.target.matches('.top-navbar__notification')) {
-      setNotificationMenu('none');
-    }
+    setNotificationMenu('none');
   };
 
   window.addEventListener('click', (e) => {
     onNotAvatarClick(e);
     notNotificationClick(e);
   });
-
-  /**TODO
-   * Create custom event when notification not cliked or avatar not clicked
-   */
 
   return (
     <div className='top-navbar'>
@@ -59,8 +60,8 @@ const TopNavbar = () => {
         <NotificationMenu display={isNotificationMenuOn} />
       </div>
       <div id='user-avatar'>
-        <UserAvatar onClick={onAvatarClick} userName={userName} />
-        <UserMenu noneClass={isAvatarMenuOn} userName={userName} />
+        <UserAvatar onClick={onAvatarClick} userName={name} />
+        <UserMenu noneClass={isAvatarMenuOn} userName={name} />
       </div>
     </div>
   );

@@ -1,16 +1,13 @@
 import React from 'react';
-import { DashboardContent, SideNavbar, TopNavbar } from '../components/Components';
+import { DashboardContent } from '../components/Components';
 import '../styles/homepage.css';
 
 const HomePage = () => {
   return (
-    <div className='homepage'>
-      <SideNavbar />
-      <main>
-        <TopNavbar />
-        <DashboardContent />
-      </main>
-    </div>
+    <main className='homepage'>
+      <div className='invisible-sidebar'></div>
+      <DashboardContent />
+    </main>
   );
 };
 

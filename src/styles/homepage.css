@@ -1,7 +1,11 @@
 .homepage {
   display: flex;
+  justify-content: end;
   width: 100%;
 }
-main {
-  width: 100%;
+
+.invisible-sidebar {
+  width: 25%;
+  height: calc(100vh - 90px);
+  background-color: inherit;
 }

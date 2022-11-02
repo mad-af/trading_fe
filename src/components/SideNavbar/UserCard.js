@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { Avatar } from '@mui/material';
-import UserContext from '../../context/UserContext';
+import { UserContext } from '../../context/Context';
 
 const UserCard = () => {
-  const user = useContext(UserContext);
+  const { name } = useContext(UserContext);
   return (
     <div className='side-navbar__user-card'>
-      <Avatar>{user[0]}</Avatar>
-      <p>{user}</p>
+      <Avatar>{name[0]}</Avatar>
+      <p>{name}</p>
     </div>
   );
 };
