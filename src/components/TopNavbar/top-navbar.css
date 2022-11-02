@@ -8,12 +8,13 @@
 }
 
 .top-navbar .top-navbar__user-menu {
+  width: 250px;
   position: absolute;
-  margin-left: -150px;
+  margin-left: -210px;
   background-color: white;
   transition: height 0.3s;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
   padding-bottom: 5px;
   overflow: hidden;
 }
@@ -25,11 +26,7 @@
   flex-flow: column;
   gap: 5px;
 }
-.top-navbar .none {
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
+
 .user-info > .name {
   font-size: 15px;
   font-weight: 600;
@@ -41,8 +38,9 @@
 }
 
 .top-navbar .notification-menu {
+  width: 300px;
   margin-top: 10px;
-  margin-left: -170px;
+  margin-left: -270px;
   display: flex;
   flex-flow: column;
   position: absolute;
@@ -62,4 +60,8 @@
 .notification-menu > .subheader {
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+.top-navbar .none {
+  display: none;
 }

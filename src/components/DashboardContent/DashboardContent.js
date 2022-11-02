@@ -1,7 +1,7 @@
 import React from 'react';
 import './content.css';
 
-const Content = () => {
+const DashboardContent = () => {
   return (
     <div className='content'>
       <h2>Hi, Welcome back</h2>
@@ -10,4 +10,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default DashboardContent;

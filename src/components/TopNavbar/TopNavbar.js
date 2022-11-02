@@ -20,20 +20,41 @@ const TopNavbar = () => {
     isNotificationMenuOn ? setNotificationMenu('') : setNotificationMenu('none');
   };
 
-  window.addEventListener('click', (e) => {
-    if (!e.target.matches('.top-navbar__notification')) {
+  const onNotAvatarClick = (e) => {
+    if (isAvatarMenuOn) return;
+    if (!e.target.matches('.top-navbar__avatar')) {
       setAvatarMenu('none');
     }
-    /**TODO
-     * Create window click then close notification menu
-     */
+  };
+
+  const isNotificationMenuHasNone = () => {
+    const el = document.querySelector('#top-navbar__notification-menu');
+    return el.classList.contains('none');
+  };
+
+  const notNotificationClick = (e) => {
+    if (isNotificationMenuHasNone()) {
+      return;
+    }
+    if (!e.target.matches('.top-navbar__notification')) {
+      setNotificationMenu('none');
+    }
+  };
+
+  window.addEventListener('click', (e) => {
+    onNotAvatarClick(e);
+    notNotificationClick(e);
   });
+
+  /**TODO
+   * Create custom event when notification not cliked or avatar not clicked
+   */
 
   return (
     <div className='top-navbar'>
       <div>
-        <Badge onClick={onNotificationClick} color='secondary' badgeContent={1}>
-          <NotificationsRounded font-color='secondary' className='top-navbar__notification hover' />
+        <Badge className='top-navbar__notification hover' color='secondary' badgeContent={1} onClick={onNotificationClick}>
+          <NotificationsRounded className='top-navbar__notification' font-color='secondary' />
         </Badge>
         <NotificationMenu display={isNotificationMenuOn} />
       </div>

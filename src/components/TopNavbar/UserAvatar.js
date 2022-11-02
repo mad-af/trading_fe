@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 
 const UserAvatar = ({ onClick, userName }) => {
   return (
-    <Avatar onClick={onClick} className='top-navbar__notification hover'>
+    <Avatar onClick={onClick} className='top-navbar__avatar hover'>
       {userName[0]}
     </Avatar>
   );

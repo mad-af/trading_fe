@@ -1,5 +1,5 @@
 import React from 'react';
-import { Content, SideNavbar, TopNavbar } from '../components/Components';
+import { DashboardContent, SideNavbar, TopNavbar } from '../components/Components';
 import '../styles/homepage.css';
 
 const HomePage = () => {
@@ -8,7 +8,7 @@ const HomePage = () => {
       <SideNavbar />
       <main>
         <TopNavbar />
-        <Content />
+        <DashboardContent />
       </main>
     </div>
   );

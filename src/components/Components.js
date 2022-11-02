@@ -1,5 +1,5 @@
 import SideNavbar from './SideNavbar/SideNavbar';
 import TopNavbar from './TopNavbar/TopNavbar';
-import Content from './Content/Content';
+import DashboardContent from './DashboardContent/DashboardContent';
 
-export { SideNavbar, TopNavbar, Content };
+export { SideNavbar, TopNavbar, DashboardContent };
