@@ -13,12 +13,6 @@ const NavigationLink = () => {
         <ShoppingCartRounded />
         Product
       </Link>
-      <Link className='side-navbar__item' to='/login'>
-        Login
-      </Link>
-      <Link className='side-navbar__item' to='/register'>
-        Register
-      </Link>
     </div>
   );
 };

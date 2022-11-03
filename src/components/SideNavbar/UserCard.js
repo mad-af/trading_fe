@@ -3,7 +3,7 @@ import { Avatar } from '@mui/material';
 import { UserContext } from '../../context/Context';
 
 const UserCard = () => {
-  const { name } = useContext(UserContext);
+  const name = useContext(UserContext).name || '';
   return (
     <div className='side-navbar__user-card'>
       <Avatar>{name[0]}</Avatar>

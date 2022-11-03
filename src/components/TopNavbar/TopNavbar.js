@@ -8,7 +8,7 @@ import UserMenu from './UserMenu';
 import NotificationMenu from './NotificationMenu';
 
 const TopNavbar = () => {
-  const { name } = useContext(UserContext);
+  const name = useContext(UserContext).name || '';
   const [isAvatarMenuOn, setAvatarMenu] = useState('none');
   const [isNotificationMenuOn, setNotificationMenu] = useState('none');
 
@@ -54,7 +54,12 @@ const TopNavbar = () => {
   return (
     <div className='top-navbar'>
       <div>
-        <Badge className='top-navbar__notification hover' color='secondary' badgeContent={1} onClick={onNotificationClick}>
+        <Badge
+          className='top-navbar__notification hover'
+          color='secondary'
+          badgeContent={1}
+          onClick={onNotificationClick}
+        >
           <NotificationsRounded className='top-navbar__notification' font-color='secondary' />
         </Badge>
         <NotificationMenu display={isNotificationMenuOn} />

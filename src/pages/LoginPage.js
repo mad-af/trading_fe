@@ -3,8 +3,8 @@ import React from 'react';
 import useInput from '../hooks/useInput';
 import '../styles/form-page.css';
 
-const LoginPage = () => {
-  const [email, onEmailChange] = useInput('');
+const LoginPage = ({ onLogin }) => {
+  const [username, onUsernameChange] = useInput('');
   const [pass, onPassChange] = useInput('');
 
   return (
@@ -13,9 +13,26 @@ const LoginPage = () => {
       <p>
         Dont have an account? <Link href='/register'>Get started</Link>
       </p>
-      <TextField onInput={onEmailChange} sx={{ marginTop: '10px' }} required label='Email' placeholder='abc@gmail.com' value={email} />
-      <TextField onInput={onPassChange} sx={{ marginBottom: '20px' }} required label='Password' placeholder='Password' value={pass} />
-      <Button variant='contained'>Login</Button>
+      <TextField
+        onInput={onUsernameChange}
+        sx={{ marginTop: '10px' }}
+        required
+        label='Username'
+        placeholder='username'
+        value={username}
+      />
+      <TextField
+        type='password'
+        onInput={onPassChange}
+        sx={{ marginBottom: '20px' }}
+        required
+        label='Password'
+        placeholder='Password'
+        value={pass}
+      />
+      <Button onClick={() => onLogin({ username, password: pass })} variant='contained'>
+        Login
+      </Button>
     </div>
   );
 };
