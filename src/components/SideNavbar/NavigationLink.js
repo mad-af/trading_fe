@@ -1,6 +1,6 @@
-import { DashboardRounded, ShoppingCartRounded } from '@mui/icons-material';
+import {DashboardRounded, GroupRounded} from '@mui/icons-material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const NavigationLink = () => {
   return (
@@ -10,8 +10,8 @@ const NavigationLink = () => {
         Dashboard
       </Link>
       <Link className='side-navbar__item' to='/'>
-        <ShoppingCartRounded />
-        Product
+        <GroupRounded />
+        Users
       </Link>
     </div>
   );

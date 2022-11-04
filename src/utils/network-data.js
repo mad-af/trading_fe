@@ -1,18 +1,18 @@
 import API_ENDPOINT from '../global/api-endpoint';
 
 function loginDataErrorResponse() {
-  return { token: '', id: '' };
+  return {token: '', id: ''};
 }
 
-function setUserLoginData({ token, id }) {
-  return localStorage.setItem('token', JSON.stringify({ token, id }));
+function setUserLoginData({token, id}) {
+  return localStorage.setItem('token', JSON.stringify({token, id}));
 }
 
 function getUserLoginData() {
   return JSON.parse(localStorage.getItem('token')) || loginDataErrorResponse();
 }
 
-async function login({ username, password }) {
+async function login({username, password}) {
   const headers = new Headers();
   headers.append('Authorization', 'Basic ' + btoa(`trading_be:trading_be`));
   headers.append('Content-Type', 'application/json');
@@ -33,7 +33,7 @@ async function login({ username, password }) {
     if (responseJson.code === 401) {
       alert('Gagal login');
     }
-    return { error: true, data: loginDataErrorResponse() };
+    return {error: true, data: loginDataErrorResponse()};
   }
 
   setUserLoginData(responseJson.data);
@@ -46,7 +46,11 @@ async function login({ username, password }) {
   return response; */
 }
 
-async function register({ name, email, password, username, phone }) {
+async function logout() {
+  setUserLoginData(loginDataErrorResponse());
+}
+
+async function register({name, email, password, username, phone}) {
   const headers = new Headers();
   headers.append('Authorization', 'Basic ' + btoa('trading_be:trading_be'));
   headers.append('Content-Type', 'application/json');
@@ -54,16 +58,16 @@ async function register({ name, email, password, username, phone }) {
     method: 'POST',
     redirect: 'follow',
     headers: headers,
-    body: JSON.stringify({ name, email, password, username, phone, role_id: 2 }),
+    body: JSON.stringify({name, email, password, username, phone, role_id: 2}),
   });
-  console.log(JSON.stringify({ name, email, password, username, phone, role_id: 2 }));
+  console.log(JSON.stringify({name, email, password, username, phone, role_id: 2}));
   const responseJson = await response.json();
   if (responseJson.error === true) {
     alert(responseJson.message);
-    return { error: true };
+    return {error: true};
   }
   alert('Registration successful');
-  return { error: false };
+  return {error: false};
 }
 
 async function getUserLogged(id) {
@@ -76,10 +80,10 @@ async function getUserLogged(id) {
 
   if (responseJson.error === true) {
     setUserLoginData(loginDataErrorResponse());
-    return { error: true, data: {} };
+    return {error: true, data: {}};
   }
 
   return responseJson;
 }
 
-export { setUserLoginData, getUserLoginData, login, getUserLogged, register };
+export {setUserLoginData, getUserLoginData, login, getUserLogged, register, logout};

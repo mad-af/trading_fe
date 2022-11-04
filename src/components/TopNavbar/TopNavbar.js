@@ -1,17 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useState} from 'react';
 import './top-navbar.css';
-import { Badge } from '@mui/material';
+import {Badge} from '@mui/material';
 import UserAvatar from './UserAvatar';
-import { NotificationsRounded } from '@mui/icons-material';
-import { UserContext } from '../../context/Context';
+import {NotificationsRounded} from '@mui/icons-material';
+import {UserContext} from '../../context/Context';
 import UserMenu from './UserMenu';
 import NotificationMenu from './NotificationMenu';
+import {getUserLoginData} from '../../utils/network-data';
 
-const TopNavbar = () => {
+const TopNavbar = ({onLogout}) => {
+  const {token} = getUserLoginData();
   const name = useContext(UserContext).name || '';
   const [isAvatarMenuOn, setAvatarMenu] = useState('none');
   const [isNotificationMenuOn, setNotificationMenu] = useState('none');
-
+  if (!token) {
+    return;
+  }
   const onAvatarClick = (e) => {
     isAvatarMenuOn ? setAvatarMenu('') : setAvatarMenu('none');
     notNotificationClick();
@@ -57,7 +61,7 @@ const TopNavbar = () => {
         <Badge
           className='top-navbar__notification hover'
           color='secondary'
-          badgeContent={1}
+          badgeContent={0}
           onClick={onNotificationClick}
         >
           <NotificationsRounded className='top-navbar__notification' font-color='secondary' />
@@ -66,7 +70,7 @@ const TopNavbar = () => {
       </div>
       <div id='user-avatar'>
         <UserAvatar onClick={onAvatarClick} userName={name} />
-        <UserMenu noneClass={isAvatarMenuOn} userName={name} />
+        <UserMenu onLogout={onLogout} noneClass={isAvatarMenuOn} userName={name} />
       </div>
     </div>
   );
