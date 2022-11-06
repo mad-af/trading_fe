@@ -1,8 +1,8 @@
-import { Button, Link, TextField } from '@mui/material';
+import {Button, Link, TextField} from '@mui/material';
 import React from 'react';
 import useInput from '../hooks/useInput';
 
-const RegisterPage = ({ onRegister }) => {
+const RegisterPage = ({onRegister}) => {
   const [name, onNameChange] = useInput('');
   const [username, onUsernameChange] = useInput('');
   const [email, onEmailChange] = useInput('');
@@ -10,14 +10,20 @@ const RegisterPage = ({ onRegister }) => {
   const [pass, onPassChange] = useInput('');
 
   return (
-    <div className='form-page'>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onRegister({name, email, password: pass, username, phone});
+      }}
+      className='form-page'
+    >
       <h2>Sign up to get started</h2>
       <p>
         Have an account? <Link href='/'>Sign in</Link>
       </p>
       <TextField
         onInput={onNameChange}
-        sx={{ marginTop: '10px' }}
+        sx={{marginTop: '10px'}}
         required
         label='Name'
         placeholder='Your Name'
@@ -25,7 +31,7 @@ const RegisterPage = ({ onRegister }) => {
       />
       <TextField
         onInput={onUsernameChange}
-        sx={{ marginTop: '10px' }}
+        sx={{marginTop: '10px'}}
         required
         label='Username'
         placeholder='username'
@@ -50,19 +56,16 @@ const RegisterPage = ({ onRegister }) => {
       <TextField
         type='password'
         onInput={onPassChange}
-        sx={{ marginBottom: '20px' }}
+        sx={{marginBottom: '20px'}}
         required
         label='Password'
         placeholder='Password'
         value={pass}
       />
-      <Button
-        onClick={() => onRegister({ name, email, password: pass, username, phone })}
-        variant='contained'
-      >
+      <Button type='submit' variant='contained'>
         Register
       </Button>
-    </div>
+    </form>
   );
 };
 

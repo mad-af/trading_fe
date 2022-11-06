@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardContent } from '../components/Components';
+import {DashboardContent} from '../components';
 import '../styles/homepage.css';
 
 const HomePage = () => {

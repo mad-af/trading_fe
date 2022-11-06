@@ -1,0 +1,36 @@
+.content {
+  margin-top: 30px;
+  padding: 0px 40px;
+  width: 80%;
+}
+
+/* Card */
+.content .card-container {
+  display: flex;
+  width: 100%;
+  flex-flow: wrap;
+  margin-top: 15px;
+  gap: 1%;
+}
+.card-container > .card {
+  display: flex;
+  height: 150px;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 24%;
+  margin: 10px 0px;
+  padding: 10px;
+  background-color: #d1e9fc;
+  border-radius: 10px;
+}
+
+.card > h3 {
+  color: #061b64;
+}
+
+.card > p {
+  display: flex;
+  font-size: 42px;
+  font-weight: 700;
+}

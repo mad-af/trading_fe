@@ -1,4 +1,5 @@
 import API_ENDPOINT from '../global/api-endpoint';
+import CONFIG from '../global/config';
 
 function loginDataErrorResponse() {
   return {token: '', id: ''};
@@ -31,7 +32,7 @@ async function login({username, password}) {
   if (responseJson.error === true) {
     setUserLoginData(loginDataErrorResponse());
     if (responseJson.code === 401) {
-      alert('Gagal login');
+      alert(responseJson.message);
     }
     return {error: true, data: loginDataErrorResponse()};
   }
@@ -44,6 +45,10 @@ async function login({username, password}) {
     id: '671bab75-9832-4f09-956c'
   };
   return response; */
+}
+
+async function getUserList() {
+  const USER_LIST_ENDPOINT = CONFIG.REGISTER;
 }
 
 async function logout() {
@@ -80,7 +85,8 @@ async function getUserLogged(id) {
 
   if (responseJson.error === true) {
     setUserLoginData(loginDataErrorResponse());
-    return {error: true, data: {}};
+    alert(responseJson.message);
+    window.location.reload();
   }
 
   return responseJson;

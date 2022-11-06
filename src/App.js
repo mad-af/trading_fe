@@ -7,7 +7,7 @@ import './styles/app.css';
 import RegisterPage from './pages/RegisterPage';
 import {UserProvider, TokenProvider} from './context/Context';
 import {getUserLogged, getUserLoginData, login, logout, register} from './utils/network-data';
-import {SideNavbar, TopNavbar} from './components/Components';
+import {SideNavbar, TopNavbar} from './components';
 
 function App() {
   const {token, id} = getUserLoginData();
@@ -28,14 +28,15 @@ function App() {
 
   const onRegister = async (data) => {
     const registerData = await register(data);
-    registerData.error === false && navigate('/');
+    registerData.error === false && navigate('./');
   };
 
   const onLogout = () => {
     logout();
     window.location.reload();
-    // setCurrentToken('');
   };
+
+  console.log(user);
 
   if (currentToken) {
     return (
