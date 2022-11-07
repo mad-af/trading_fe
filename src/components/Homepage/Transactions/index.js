@@ -8,9 +8,10 @@ import {
   TableRow,
 } from '@mui/material';
 import React from 'react';
+import {formatter} from '../../../utils/network-data';
 
 const TransactionsContent = ({transactionList, onDetail}) => {
-  const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+  const options = {year: 'numeric', month: 'long', day: 'numeric'};
   return (
     <div className='content'>
       <h2 style={{marginBottom: '20px'}}>List of Users</h2>
@@ -22,7 +23,7 @@ const TransactionsContent = ({transactionList, onDetail}) => {
                 Name
               </TableCell>
               <TableCell sx={{fontWeight: 600}} align='left'>
-                Created
+                Date
               </TableCell>
               <TableCell sx={{fontWeight: 600}} align='left'>
                 Bank Name
@@ -57,7 +58,7 @@ const TransactionsContent = ({transactionList, onDetail}) => {
                     <TableCell sx={{textTransform: 'capitalize'}}>
                       {transaction.transaction_type_name}
                     </TableCell>
-                    <TableCell>{`Rp ${transaction.value}`}</TableCell>
+                    <TableCell>{formatter.format(transaction.value)}</TableCell>
                   </TableRow>
                 );
               })}

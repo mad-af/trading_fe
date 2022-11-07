@@ -14,7 +14,6 @@ import './index.css';
 const DetailComponent = ({data, type}) => {
   console.log(type, data);
   const options = {
-    weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -105,7 +104,7 @@ const DetailComponent = ({data, type}) => {
                 Status
               </TableCell>
               <TableCell sx={{fontWeight: 600}} align='left'>
-                Created
+                Date
               </TableCell>
             </TableRow>
           </TableHead>
