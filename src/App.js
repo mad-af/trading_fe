@@ -36,18 +36,13 @@ function App() {
     window.location.reload();
   };
 
-  console.log(user);
-
   if (currentToken) {
     return (
       <TokenProvider value={currentToken}>
         <UserProvider value={JSON.parse(user)}>
           <TopNavbar onLogout={onLogout} />
           <SideNavbar />
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/*' element={<NotFound />} />
-          </Routes>
+          <HomePage />
         </UserProvider>
       </TokenProvider>
     );

@@ -10,7 +10,7 @@ import {getUserLoginData} from '../../utils/network-data';
 
 const TopNavbar = ({onLogout}) => {
   const {token} = getUserLoginData();
-  const name = useContext(UserContext).name || '';
+  const name = useContext(UserContext).name || 'Admin';
   const [isAvatarMenuOn, setAvatarMenu] = useState('none');
   const [isNotificationMenuOn, setNotificationMenu] = useState('none');
   if (!token) {

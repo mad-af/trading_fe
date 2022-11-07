@@ -47,8 +47,20 @@ async function login({username, password}) {
   return response; */
 }
 
-async function getUserList() {
-  const USER_LIST_ENDPOINT = CONFIG.REGISTER;
+async function getUserList(page = 1, quantity = 10) {
+  const USER_LIST_ENDPOINT = `${API_ENDPOINT.REGISTER}?page=${page}&quantity=${quantity}`;
+  const response = await fetch(USER_LIST_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${getUserLoginData().token}`,
+    },
+  });
+  const responseJson = await response.json();
+  if (responseJson.error === true) {
+    alert(responseJson.message);
+    return {data: {}, error: true};
+  }
+  console.log(responseJson);
+  return responseJson;
 }
 
 async function logout() {
@@ -92,4 +104,4 @@ async function getUserLogged(id) {
   return responseJson;
 }
 
-export {setUserLoginData, getUserLoginData, login, getUserLogged, register, logout};
+export {setUserLoginData, getUserLoginData, login, getUserLogged, register, logout, getUserList};
