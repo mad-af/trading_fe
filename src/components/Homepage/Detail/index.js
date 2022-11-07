@@ -68,9 +68,9 @@ const DetailComponent = ({data, type}) => {
     <div className='content detail-component'>
       <h2 style={{marginBottom: '20px'}}>Transaction Detail</h2>
       <div>
-        <h3>Username</h3>
+        <h3>Name</h3>
         <span>:</span>
-        <p>{data.user_name}</p>
+        <p style={{textTransform: 'capitalize'}}>{data.user_name}</p>
       </div>
       <div>
         <h3>Date</h3>

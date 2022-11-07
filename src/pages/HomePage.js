@@ -12,8 +12,13 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const onClickToDetail = async (type, id) => {
+    if (type === 'user') {
+      const data = id;
+      setDetailData({type, data});
+      navigate('detail');
+      return;
+    }
     const data = await getTransactionDetail(id);
-    console.log(data);
     setDetailData({type, data: data.data});
     navigate('detail');
   };
@@ -26,8 +31,6 @@ const HomePage = () => {
     getList();
   }, []);
 
-  console.log('transaction', transactionList);
-  console.log('Render Homepage');
   return (
     <main className='homepage'>
       <div className='invisible-sidebar'></div>
