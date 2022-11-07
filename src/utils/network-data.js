@@ -114,7 +114,6 @@ async function getTransactionList(page = 1) {
     alert(responseJson.message);
     return {data: {}, error: true};
   }
-  console.log(responseJson);
   return responseJson;
 }
 
@@ -130,7 +129,6 @@ async function getTransactionDetail(id) {
     alert(responseJson.message);
     return {data: {}, error: true};
   }
-  console.log(responseJson);
   return responseJson;
 }
 

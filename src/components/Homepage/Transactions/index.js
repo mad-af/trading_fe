@@ -10,6 +10,7 @@ import {
 import React from 'react';
 
 const TransactionsContent = ({transactionList, onDetail}) => {
+  const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
   return (
     <div className='content'>
       <h2 style={{marginBottom: '20px'}}>List of Users</h2>
@@ -18,16 +19,19 @@ const TransactionsContent = ({transactionList, onDetail}) => {
           <TableHead>
             <TableRow>
               <TableCell sx={{fontWeight: 600}} align='left'>
-                Username
+                Name
               </TableCell>
               <TableCell sx={{fontWeight: 600}} align='left'>
-                Description
+                Created
               </TableCell>
               <TableCell sx={{fontWeight: 600}} align='left'>
                 Bank Name
               </TableCell>
               <TableCell sx={{fontWeight: 600}} align='left'>
-                Status
+                Type
+              </TableCell>
+              <TableCell sx={{fontWeight: 600}} align='left'>
+                Value
               </TableCell>
             </TableRow>
           </TableHead>
@@ -41,10 +45,19 @@ const TransactionsContent = ({transactionList, onDetail}) => {
                     key={transaction.id}
                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
                   >
-                    <TableCell>{transaction.user_name}</TableCell>
-                    <TableCell>{transaction.description}</TableCell>
-                    <TableCell>{transaction.bank_name}</TableCell>
-                    <TableCell>{transaction.status}</TableCell>
+                    <TableCell sx={{textTransform: 'capitalize'}}>
+                      {transaction.user_name}
+                    </TableCell>
+                    <TableCell>
+                      {new Date(transaction.created_at).toLocaleDateString('id-ID', options)}
+                    </TableCell>
+                    <TableCell sx={{textTransform: 'capitalize'}}>
+                      {transaction.bank_name}
+                    </TableCell>
+                    <TableCell sx={{textTransform: 'capitalize'}}>
+                      {transaction.transaction_type_name}
+                    </TableCell>
+                    <TableCell>{`Rp ${transaction.value}`}</TableCell>
                   </TableRow>
                 );
               })}

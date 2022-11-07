@@ -27,7 +27,6 @@ const HomePage = () => {
   }, []);
 
   console.log('transaction', transactionList);
-  console.log('user', userList);
   console.log('Render Homepage');
   return (
     <main className='homepage'>
