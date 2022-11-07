@@ -1,4 +1,4 @@
-import {DashboardRounded, GroupRounded} from '@mui/icons-material';
+import {DashboardRounded, GroupRounded, ReceiptLongRounded} from '@mui/icons-material';
 import React from 'react';
 import {Link} from 'react-router-dom';
 
@@ -12,6 +12,10 @@ const NavigationLink = () => {
       <Link className='side-navbar__item' to='users'>
         <GroupRounded />
         Users
+      </Link>
+      <Link className='side-navbar__item' to='transactions'>
+        <ReceiptLongRounded />
+        Transactions
       </Link>
     </div>
   );

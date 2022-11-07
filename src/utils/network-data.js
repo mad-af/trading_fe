@@ -1,5 +1,4 @@
 import API_ENDPOINT from '../global/api-endpoint';
-import CONFIG from '../global/config';
 
 function loginDataErrorResponse() {
   return {token: '', id: ''};
@@ -59,7 +58,6 @@ async function getUserList(page = 1, quantity = 10) {
     alert(responseJson.message);
     return {data: {}, error: true};
   }
-  console.log(responseJson);
   return responseJson;
 }
 
@@ -104,4 +102,29 @@ async function getUserLogged(id) {
   return responseJson;
 }
 
-export {setUserLoginData, getUserLoginData, login, getUserLogged, register, logout, getUserList};
+async function getTransactionList(page = 1) {
+  const USER_LIST_ENDPOINT = `${API_ENDPOINT.TRANSACTION}?page=${page}&quantity=10`;
+  const response = await fetch(USER_LIST_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${getUserLoginData().token}`,
+    },
+  });
+  const responseJson = await response.json();
+  if (responseJson.error === true) {
+    alert(responseJson.message);
+    return {data: {}, error: true};
+  }
+  console.log(responseJson);
+  return responseJson;
+}
+
+export {
+  setUserLoginData,
+  getUserLoginData,
+  login,
+  getUserLogged,
+  register,
+  logout,
+  getUserList,
+  getTransactionList,
+};
