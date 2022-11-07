@@ -1,9 +1,24 @@
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import './index.css';
 
 const DetailComponent = ({data, type}) => {
   console.log(type, data);
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
   const navigate = useNavigate();
   if (type === undefined) {
     navigate('/');
@@ -48,7 +63,7 @@ const DetailComponent = ({data, type}) => {
     );
   }
 
-  const date = new Date(data.created_at).toString();
+  const date = new Date(data.created_at).toLocaleDateString('id-ID', options);
   return (
     <div className='content detail-component'>
       <h2 style={{marginBottom: '20px'}}>Transaction Detail</h2>
@@ -82,6 +97,36 @@ const DetailComponent = ({data, type}) => {
         <span>:</span>
         <p style={{textTransform: 'capitalize'}}>{data.status}</p>
       </div>
+      <TableContainer component={Paper}>
+        <Table sx={{minWidth: 650}} aria-label='simple table'>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{fontWeight: 600}} align='left'>
+                Status
+              </TableCell>
+              <TableCell sx={{fontWeight: 600}} align='left'>
+                Created
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.transaction_status &&
+              data.transaction_status.map((transaction) => {
+                return (
+                  <TableRow
+                    key={transaction.id}
+                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                  >
+                    <TableCell>{transaction.status}</TableCell>
+                    <TableCell>
+                      {new Date(transaction.created_at).toLocaleDateString('id-ID', options)}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };

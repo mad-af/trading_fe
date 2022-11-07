@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import {DashboardContent, DetailComponent, TransactionsContent, UserContent} from '../components';
 import '../styles/homepage.css';
-import {getTransactionList, getUserList} from '../utils/network-data';
+import {getTransactionDetail, getTransactionList, getUserList} from '../utils/network-data';
 import NotFound from './NotFound';
 
 const HomePage = () => {
@@ -11,8 +11,10 @@ const HomePage = () => {
   const [detailData, setDetailData] = useState('{}');
   const navigate = useNavigate();
 
-  const onClickToDetail = (type, data) => {
-    setDetailData({type, data});
+  const onClickToDetail = async (type, id) => {
+    const data = await getTransactionDetail(id);
+    console.log(data);
+    setDetailData({type, data: data.data});
     navigate('detail');
   };
 
@@ -24,8 +26,8 @@ const HomePage = () => {
     getList();
   }, []);
 
-  console.log(transactionList);
-  console.log(userList);
+  console.log('transaction', transactionList);
+  console.log('user', userList);
   console.log('Render Homepage');
   return (
     <main className='homepage'>

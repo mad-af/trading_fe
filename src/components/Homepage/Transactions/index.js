@@ -12,6 +12,7 @@ import React from 'react';
 const TransactionsContent = ({transactionList, onDetail}) => {
   return (
     <div className='content'>
+      <h2 style={{marginBottom: '20px'}}>List of Users</h2>
       <TableContainer component={Paper}>
         <Table sx={{minWidth: 650}} aria-label='simple table'>
           <TableHead>
@@ -36,7 +37,7 @@ const TransactionsContent = ({transactionList, onDetail}) => {
                 return (
                   <TableRow
                     className='table-item'
-                    onClick={() => onDetail('transaction', transaction)}
+                    onClick={() => onDetail('transaction', transaction.id)}
                     key={transaction.id}
                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
                   >
