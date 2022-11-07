@@ -1,0 +1,11 @@
+.form-page {
+  background-color: #ffffff;
+  margin: auto;
+  margin-top: 5%;
+  padding: 40px 20px;
+  border-radius: 10px;
+  width: 40%;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+}

@@ -1,0 +1,10 @@
+.homepage {
+  display: flex;
+  width: 100%;
+}
+
+.invisible-sidebar {
+  width: 20%;
+  height: calc(100vh - 90px);
+  background-color: inherit;
+}

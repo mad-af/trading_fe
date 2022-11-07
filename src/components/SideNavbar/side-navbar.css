@@ -1,0 +1,60 @@
+.side-navbar {
+  position: fixed;
+  top: 0;
+  width: 20%;
+  border-right: 1px dashed #e0e4e8;
+  height: 100%;
+  color: #212b36;
+  padding: 10px 10px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.side-navbar__drawer-button {
+  color: #637381;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.side-navbar__drawer-button > .drawer-button:hover {
+  cursor: pointer;
+  color: #bdbdbd;
+}
+.side-navbar__navigation-link {
+  margin-top: 40px;
+  width: 100%;
+}
+.side-navbar__item {
+  display: flex;
+  color: #637381;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.side-navbar__user-card {
+  display: flex;
+  background-color: #edeff1;
+  width: 95%;
+  padding: 15px 20px;
+  border-radius: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+.side-navbar__item:hover {
+  background-color: #edeff1;
+  cursor: pointer;
+  color: inherit;
+}
+
+@media screen and (max-height: 406px) {
+  .side-navbar {
+    overflow-y: scroll;
+  }
+}
