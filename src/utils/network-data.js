@@ -47,12 +47,6 @@ async function login({username, password}) {
 
   setUserLoginData(responseJson.data);
   return responseJson;
-
-  /*   const response = {
-    token: '671bab75-9832-4f09-956c-b3d891d0f0fc',
-    id: '671bab75-9832-4f09-956c'
-  };
-  return response; */
 }
 
 async function getUserList(page = 1, quantity = 10) {
@@ -94,7 +88,13 @@ async function register({name, email, password, username, phone}) {
   return {error: false};
 }
 
-async function getUserLogged(id) {
+async function getUserLogged(id = '') {
+  if (id === '') {
+    setUserLoginData(loginDataErrorResponse());
+    window.location.reload();
+    return;
+  }
+
   const response = await fetch(API_ENDPOINT.USER_DETAIL(id), {
     headers: {
       Authorization: `Bearer ${getUserLoginData().token}`,
@@ -104,8 +104,9 @@ async function getUserLogged(id) {
 
   if (responseJson.error === true) {
     setUserLoginData(loginDataErrorResponse());
-    alert(responseJson.message);
     window.location.reload();
+    alert(responseJson.message);
+    return {error: true, data: loginDataErrorResponse()};
   }
 
   return responseJson;

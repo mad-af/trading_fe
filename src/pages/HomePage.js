@@ -10,6 +10,8 @@ const HomePage = () => {
   const [transactionList, setTransactionList] = useState('{}');
   const [detailData, setDetailData] = useState('{}');
   const navigate = useNavigate();
+  const [transactionPage, setTransactionPage] = useState(1);
+  const [transactionMaxPage, setTransactionMaxPage] = useState(1);
 
   const onClickToDetail = async (type, id) => {
     if (type === 'user') {
@@ -23,10 +25,29 @@ const HomePage = () => {
     navigate('detail');
   };
 
+  const onNextPage = async (page = 1, maxPage = 1) => {
+    if (page === maxPage) return;
+    const transactionData = await getTransactionList(page + 1);
+    setTransactionList(transactionData);
+    setTransactionPage(transactionData.meta.page);
+    setTransactionMaxPage(transactionData.meta.total_page);
+  };
+
+  const onBackPage = async (page = 1) => {
+    if (page === 1) return;
+    const transactionData = await getTransactionList(page - 1);
+    setTransactionList(transactionData);
+    setTransactionPage(transactionData.meta.page);
+    setTransactionMaxPage(transactionData.meta.total_page);
+  };
+
   useEffect(() => {
     async function getList() {
       setUserList(await getUserList());
-      setTransactionList(await getTransactionList());
+      const transactionData = await getTransactionList();
+      setTransactionList(transactionData);
+      setTransactionPage(transactionData.meta.page);
+      setTransactionMaxPage(transactionData.meta.total_page);
     }
     getList();
   }, []);
@@ -36,7 +57,7 @@ const HomePage = () => {
       <div className='invisible-sidebar'></div>
       <Routes>
         <Route index element={<DashboardContent />} />
-        <Route path='dashboard' element={<DashboardContent />} />
+        <Route path='/' element={<DashboardContent />} />
         <Route
           path='users'
           element={<UserContent userList={userList.data} onDetail={onClickToDetail} />}
@@ -45,8 +66,12 @@ const HomePage = () => {
           path='transactions'
           element={
             <TransactionsContent
+              page={transactionPage}
+              maxPage={transactionMaxPage}
               transactionList={transactionList.data}
               onDetail={onClickToDetail}
+              onBack={onBackPage}
+              onNext={onNextPage}
             />
           }
         />

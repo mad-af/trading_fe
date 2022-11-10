@@ -1,4 +1,5 @@
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -10,10 +11,11 @@ import {
 import React from 'react';
 import {formatter} from '../../../utils/network-data';
 
-const TransactionsContent = ({transactionList, onDetail}) => {
+const TransactionsContent = ({transactionList, onDetail, page, maxPage, onBack, onNext}) => {
   const options = {year: 'numeric', month: 'long', day: 'numeric'};
+  console.log(page, maxPage);
   return (
-    <div className='content'>
+    <div className='content transactions'>
       <h2 style={{marginBottom: '20px'}}>List of Users</h2>
       <TableContainer component={Paper}>
         <Table sx={{minWidth: 650}} aria-label='simple table'>
@@ -65,6 +67,25 @@ const TransactionsContent = ({transactionList, onDetail}) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div
+        style={{display: 'flex', width: '100%', justifyContent: 'center', marginTop: '15px'}}
+        className='button'
+      >
+        {page === 1 ? (
+          <Button onClick={() => onBack(page)} disabled>
+            Back
+          </Button>
+        ) : (
+          <Button onClick={() => onBack(page)}>Back</Button>
+        )}
+        {page === maxPage ? (
+          <Button onClick={() => onNext(page, maxPage)} disabled>
+            Next
+          </Button>
+        ) : (
+          <Button onClick={() => onNext(page, maxPage)}>Next</Button>
+        )}
+      </div>
     </div>
   );
 };

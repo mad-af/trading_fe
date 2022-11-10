@@ -33,7 +33,7 @@ function App() {
 
   const onLogout = () => {
     logout();
-    window.location.reload();
+    navigate('/');
   };
 
   if (currentToken) {
