@@ -36,7 +36,7 @@ const HomePage = () => {
       <div className='invisible-sidebar'></div>
       <Routes>
         <Route index element={<DashboardContent />} />
-        <Route path='dashboard' element={<DashboardContent />} />
+        <Route path='/' element={<DashboardContent />} />
         <Route
           path='users'
           element={<UserContent userList={userList.data} onDetail={onClickToDetail} />}

@@ -16,6 +16,7 @@ function App() {
   const navigate = useNavigate();
 
   const userLoggedIn = async (id) => {
+    console.log('Render App.js');
     const getUserResponse = await getUserLogged(id);
     setUser(JSON.stringify(getUserResponse.data));
   };
@@ -33,7 +34,7 @@ function App() {
 
   const onLogout = () => {
     logout();
-    window.location.reload();
+    navigate('/');
   };
 
   if (currentToken) {

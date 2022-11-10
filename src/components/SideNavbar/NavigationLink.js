@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const NavigationLink = () => {
   return (
     <div className='side-navbar__navigation-link'>
-      <Link className='side-navbar__item' to='dashboard'>
+      <Link className='side-navbar__item' to='/'>
         <DashboardRounded />
         Dashboard
       </Link>
