@@ -42,3 +42,9 @@
 .content .table-item:hover {
   cursor: pointer;
 }
+
+/* Transactions Content */
+
+.transactions .button button {
+  padding: 10px;
+}

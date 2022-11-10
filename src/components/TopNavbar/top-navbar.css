@@ -12,6 +12,8 @@
   width: 230px;
   position: absolute;
   margin-left: -200px;
+  z-index: 1;
+  border: 1px solid #63738152;
   background-color: white;
   transition: height 0.3s;
   border-radius: 10px;
