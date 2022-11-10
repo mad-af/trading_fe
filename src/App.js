@@ -10,16 +10,14 @@ import {getUserLogged, getUserLoginData, login, logout, register} from './utils/
 import {SideNavbar, TopNavbar} from './components';
 
 function App() {
-  const {token, id} = getUserLoginData();
+  const {token} = getUserLoginData();
   const [currentToken, setCurrentToken] = useState(token);
-  const [user, setUser] = useState('{}');
   const navigate = useNavigate();
 
-  const userLoggedIn = async (id) => {
-    const getUserResponse = await getUserLogged(id);
-    setUser(JSON.stringify(getUserResponse.data));
+  const userLoggedIn = async () => {
+    await getUserLogged();
   };
-  currentToken && userLoggedIn(id);
+  currentToken && userLoggedIn();
 
   const onLogin = async ({username, password}) => {
     const loginData = await login({username, password});
@@ -34,16 +32,15 @@ function App() {
   const onLogout = () => {
     logout();
     navigate('/');
+    window.location.reload();
   };
 
   if (currentToken) {
     return (
       <TokenProvider value={currentToken}>
-        <UserProvider value={JSON.parse(user)}>
-          <TopNavbar onLogout={onLogout} />
-          <SideNavbar />
-          <HomePage />
-        </UserProvider>
+        <TopNavbar onLogout={onLogout} />
+        <SideNavbar />
+        <HomePage />
       </TokenProvider>
     );
   }

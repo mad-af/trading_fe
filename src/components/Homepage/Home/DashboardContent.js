@@ -8,9 +8,6 @@ const DashboardContent = () => {
       <h2>Hi, Welcome back</h2>
       <div className='card-container'>
         <CardItem title='Users' detail='500' />
-        {/* <CardItem title='Users' detail='500' />
-        <CardItem title='Users' detail='500' />
-        <CardItem title='Users' detail='500' /> */}
       </div>
     </div>
   );
