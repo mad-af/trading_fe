@@ -13,7 +13,6 @@ import {formatter} from '../../../utils/network-data';
 
 const TransactionsContent = ({transactionList, onDetail, page, maxPage, onBack, onNext}) => {
   const options = {year: 'numeric', month: 'long', day: 'numeric'};
-  console.log(page, maxPage);
   return (
     <div className='content transactions'>
       <h2 style={{marginBottom: '20px'}}>List of Users</h2>

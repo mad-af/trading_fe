@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import API_ENDPOINT from '../global/api-endpoint';
 
 const formatter = new Intl.NumberFormat('id-ID', {
@@ -88,28 +89,16 @@ async function register({name, email, password, username, phone}) {
   return {error: false};
 }
 
-async function getUserLogged(id = '') {
-  if (id === '') {
-    setUserLoginData(loginDataErrorResponse());
-    window.location.reload();
+async function getUserLogged() {
+  const {token} = getUserLoginData();
+  const decoded = jwtDecode(token);
+
+  if (decoded.role_id === 2) {
     return;
   }
-
-  const response = await fetch(API_ENDPOINT.USER_DETAIL(id), {
-    headers: {
-      Authorization: `Bearer ${getUserLoginData().token}`,
-    },
-  });
-  const responseJson = await response.json();
-
-  if (responseJson.error === true) {
-    setUserLoginData(loginDataErrorResponse());
-    window.location.reload();
-    alert(responseJson.message);
-    return {error: true, data: loginDataErrorResponse()};
-  }
-
-  return responseJson;
+  await logout();
+  window.location.reload();
+  alert('Please login again');
 }
 
 async function getTransactionList(page = 1) {

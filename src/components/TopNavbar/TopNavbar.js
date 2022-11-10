@@ -1,16 +1,15 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import './top-navbar.css';
 import {Badge} from '@mui/material';
 import UserAvatar from './UserAvatar';
 import {NotificationsRounded} from '@mui/icons-material';
-import {UserContext} from '../../context/Context';
 import UserMenu from './UserMenu';
 import NotificationMenu from './NotificationMenu';
 import {getUserLoginData} from '../../utils/network-data';
 
 const TopNavbar = ({onLogout}) => {
   const {token} = getUserLoginData();
-  const name = useContext(UserContext).name || 'Admin';
+  const name = 'Admin';
   const [isAvatarMenuOn, setAvatarMenu] = useState('none');
   const [isNotificationMenuOn, setNotificationMenu] = useState('none');
   if (!token) {
